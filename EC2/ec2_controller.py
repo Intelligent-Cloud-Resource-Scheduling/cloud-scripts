@@ -28,6 +28,7 @@ def start_worker_instance(num_instances=1):
             MinCount=num_instances,
             MaxCount=num_instances,
             IamInstanceProfile={'Name': ROLE_NAME},
+            InstanceInitiatedShutdownBehavior='terminate',
             TagSpecifications=[{
                 'ResourceType': 'instance',
                 'Tags': [{'Key': 'Name', 'Value': 'Team24-Video-Worker'}]
