@@ -1,13 +1,17 @@
 import boto3
 import time
+import os
 
-sqs = boto3.client('sqs', region_name='us-east-1')
-QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/009075573477/Team24-Scheduling-Queue'
+sqs = boto3.client('sqs', region_name='eu-north-1')
+QUEUE_URL = 'https://sqs.eu-north-1.amazonaws.com/143326172801/Team24-Scheduling-Queue'
 
 def process_video_jobs():
     print("Worker instance started")
     
-    while True:
+    idle_counter = 0
+    MAX_IDLE_TRIES = 5
+
+    while idle_counter < MAX_IDLE_TRIES:
         try:
             response = sqs.receive_message(
                 QueueUrl=QUEUE_URL,
@@ -16,7 +20,11 @@ def process_video_jobs():
             )
 
             if 'Messages' not in response:
+                idle_counter += 1
+                print(f"No message detected, total tries: ({idle_counter}/{MAX_IDLE_TRIES})")
                 continue
+
+            idle_counter = 0
 
             message = response['Messages'][0]
             receipt_handle = message['ReceiptHandle']
@@ -37,6 +45,8 @@ def process_video_jobs():
         except Exception as e:
             print(f"Error: {e}")
             time.sleep(5)
-
+    print("No more tasks in the queue. Shutting down the instance...")
+    os.system("sudo shutdown -h now")
+    
 if __name__ == "__main__":
     process_video_jobs()

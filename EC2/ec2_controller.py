@@ -1,10 +1,10 @@
 import boto3
 
-ec2 = boto3.client('ec2', region_name='us-east-1')
-sqs = boto3.client('sqs', region_name='us-east-1')
+ec2 = boto3.client('ec2', region_name='eu-north-1')
+sqs = boto3.client('sqs', region_name='eu-north-1')
 
-QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/009075573477/Team24-Scheduling-Queue'
-AMI_ID = 'ami-0e1bed4f06a3b463d'
+QUEUE_URL = 'https://sqs.eu-north-1.amazonaws.com/143326172801/Team24-Scheduling-Queue'
+AMI_ID = 'ami-05d62b9bc5a6ca605'
 ROLE_NAME = 'Team24-Worker-Role'
 MAX_ALLOWED_INSTANCES = 3 # change this to the maximum number of worker instances
 

@@ -1,7 +1,7 @@
 import boto3
 
-sqs_client = boto3.client('sqs', region_name='us-east-1')
-ec2_client = boto3.client('ec2', region_name='us-east-1')
+sqs_client = boto3.client('sqs', region_name='eu-north-1')
+ec2_client = boto3.client('ec2', region_name='eu-north-1')
 
 def create_video_jobs_queue():
     queue_name = 'Team24-Scheduling-Queue'
