@@ -3,7 +3,6 @@ import boto3
 ec2 = boto3.client('ec2', region_name='eu-north-1')
 
 AMI_ID = 'ami-05d62b9bc5a6ca605'
-ROLE_NAME = 'Team24-Worker-Role'
 MAX_ALLOWED_INSTANCES = 3 # change this to the maximum number of worker instances
 
 def start_worker_instance(num_instances=1):
@@ -19,7 +18,6 @@ def start_worker_instance(num_instances=1):
             InstanceType='t3.micro',
             MinCount=num_instances,
             MaxCount=num_instances,
-            IamInstanceProfile={'Name': ROLE_NAME},
             KeyName='apiWorker-key',
             InstanceInitiatedShutdownBehavior='terminate',
             TagSpecifications=[{

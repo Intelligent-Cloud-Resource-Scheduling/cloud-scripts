@@ -7,7 +7,6 @@ import os
 app = Flask(__name__)
 
 BACKEND_UPDATE_URL = "" # add url for backend update endpoint here
-
 MAX_IDLE_SECONDS = 300
 is_processing = False
 last_job_finish_time = time.time()
