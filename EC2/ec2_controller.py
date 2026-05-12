@@ -22,7 +22,7 @@ def start_worker_instance(num_instances=1):
             InstanceInitiatedShutdownBehavior='terminate',
             TagSpecifications=[{
                 'ResourceType': 'instance',
-                'Tags': [{'Key': 'Name', 'Value': 'Team24-Video-Worker'}]
+                'Tags': [{'Key': 'Name', 'Value': 'Cloud Project Video Worker'}]
             }]
         ) 
         instance_ids = [instance['InstanceId'] for instance in response['Instances']]
