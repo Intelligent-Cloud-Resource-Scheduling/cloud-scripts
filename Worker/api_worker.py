@@ -57,6 +57,7 @@ def process_batch_in_background(batch_id, processes):
 
 @app.route('/process-batch', methods=['POST'])
 def handle_batch():
+    global is_processing
     data = request.get_json()
     
     if not data or 'batch_id' not in data or 'processes' not in data:
